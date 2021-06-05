@@ -14,7 +14,9 @@ public class Example extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println("<p>Hello World!</p>");
+        out.println("<p>Haha tongLe!</p>");
     }
+    
     
 }
 
