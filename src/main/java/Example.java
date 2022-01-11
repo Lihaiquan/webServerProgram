@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.sql.SQLException;
-
+// 访问的url地址：http://localhost:8080/com.haiquan.li/login
 public class Example extends HttpServlet {  
   // MySQL 8.0 以下版本 - JDBC 驱动名及数据库 URL
   // static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
@@ -15,6 +15,7 @@ public class Example extends HttpServlet {
 
     // MySQL 8.0 以上版本 - JDBC 驱动名及数据库 URL
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
+    // mydatabase是本地数据库的database
     static final String DB_URL = "jdbc:mysql://localhost:3306/mydatabase?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     // 用户名
     static final String USER = "root";
