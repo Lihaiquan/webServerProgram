@@ -15,7 +15,7 @@ public class Example extends HttpServlet {
 
     // MySQL 8.0 以上版本 - JDBC 驱动名及数据库 URL
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
-    static final String DB_URL = "jdbc:mysql://localhost:3306/RUNOOB?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/mydatabase?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     // 用户名
     static final String USER = "root";
     // 密码
@@ -25,6 +25,9 @@ public class Example extends HttpServlet {
     protected void doGet(
       HttpServletRequest request, 
       HttpServletResponse response) throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
         // 建立连接
         Connection conn = null;
         Statement stmt = null;
@@ -33,24 +36,23 @@ public class Example extends HttpServlet {
            Class.forName(JDBC_DRIVER);
           // 打开链接
            System.out.println("连接数据库...");
-           conn = DriverManager.getConnection(DB_URL,USER,PASS);
+           conn = DriverManager.getConnection(DB_URL,USER,"");
            // 执行查询
            System.out.println(" 实例化Statement对象...");
            stmt = conn.createStatement();
            String sql;
-           sql = "SELECT id, name, url FROM websites";
+           sql = "SELECT user_name, password, phone_number FROM user_info";
            ResultSet rs = stmt.executeQuery(sql);
           // 展开结果集数据库
            while(rs.next()) {
              // 通过字段检索
-             int id  = rs.getInt("id");
-             String name = rs.getString("name");
-             String url = rs.getString("url");
+             String id  = rs.getString("user_name");
+             String name = rs.getString("password");
+             String url = rs.getString("phone_number");
              // 输出数据
-             System.out.print("ID: " + id);
-             System.out.print(", 站点名称: " + name);
-             System.out.print(", 站点 URL: " + url);
-             System.out.print("\n");
+             out.println(String.format("<p>userID: %s</p>", id));
+             out.println(String.format("<p>name: %s</p>", name));
+             out.println(String.format("<p>url: %s</p>", url));       
            }
            // 完成后关闭
            rs.close();
@@ -75,13 +77,6 @@ public class Example extends HttpServlet {
           // 什么都不做
         }
       }
-
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<p>Helloiiiiiii World!</p>");
-        out.println("<p>Haha tongLe!</p>");
     }
-    
-    
 }
 
