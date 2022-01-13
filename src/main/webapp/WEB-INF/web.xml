@@ -6,15 +6,28 @@
  version="4.0">
   <display-name>Archetype Created Web Application</display-name>
   <!-- <listener></listener> -->
-  
+   
   <servlet>
     <!-- serverlet 配置 -->
     <servlet-name>Example</servlet-name>
     <servlet-class>Example</servlet-class>
+  
+  </servlet>
+
+  <servlet>
+     <!-- serverlet 配置 诗词处理-->
+     <servlet-name>ShiCi</servlet-name>
+     <servlet-class>ShiciFile</servlet-class>
+  
   </servlet>
 <!--****************************servlet映射关系配置*************************-->  
   <servlet-mapping>
     <servlet-name>Example</servlet-name>
     <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ShiCi</servlet-name>
+    <url-pattern>/shi</url-pattern>
   </servlet-mapping>
 </web-app>
